@@ -34,7 +34,7 @@ def generate_random_initial_state(square_side_size: int):
         random_index = random.randint(0, len(array) - 1)
         element = array[random_index]
         array.pop(random_index)
-        matrix[count_x][count_y] = element
+        matrix[count_x][count_y] = str(element)
         if count_y == (square_side_size - 1):
             count_x += 1
             count_y = 0
