@@ -7,7 +7,7 @@ class IterativeDFS:
         self.initial_state = initial_state
         self.final_state = final_state
 
-    def solve(self, max_depth):
+    def solve(self, max_depth=100):
         for depth in range(max_depth):
             initial_state_tuple = tuple(map(tuple, self.initial_state))
             final_state_tuple = tuple(map(tuple, self.final_state))
