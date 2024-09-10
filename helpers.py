@@ -21,25 +21,21 @@ def generate_next_states(node):
 
     return possible_next_states
 
+def verify_correct_pieces(current_state, final_state):
+    current_state = tuple(map(tuple, current_state))
+    if current_state == final_state:
+        return 9
+    else:
+        return sum(1 for (row1, row2) in zip(current_state, final_state)
+                           for (elem1, elem2) in zip(row1, row2)
+                           if elem1 == elem2)
 
-def generate_random_initial_state(square_side_size: int):
-    array = list(range(1, square_side_size ** 2)) + ['b']
+def generate_random_initial_state(moves, final_state):
+    state = final_state
 
-    # Gerar a matriz preenchida com 'x'
-    matrix = np.full((square_side_size, square_side_size), 'x', dtype=object)
+    for i in range(moves):
+        possible_next_states = generate_next_states(state)
+        state = random.choice(possible_next_states)
 
-    count_x = 0
-    count_y = 0
-    while len(array) != 0:
-        random_index = random.randint(0, len(array) - 1)
-        element = array[random_index]
-        array.pop(random_index)
-        matrix[count_x][count_y] = str(element)
-        if count_y == (square_side_size - 1):
-            count_x += 1
-            count_y = 0
-        else:
-            count_y += 1
-
-    return matrix
+    return state
 
