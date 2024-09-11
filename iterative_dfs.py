@@ -16,7 +16,11 @@ class IterativeDFS:
 
             visited = set()
 
+            stack_length = len(stack)
             while stack:
+                if stack_length < len(stack):
+                    stack_length = len(stack)
+                    print(stack_length)
                 current_state, path, current_depth = stack.pop()
                 if current_depth > depth:
                     continue
@@ -26,6 +30,7 @@ class IterativeDFS:
                 visited.add(current_state)
 
                 if current_state == final_state_tuple:
+                    print(f'Tamanho máximo da lista: {stack_length}')
                     return path
 
                 for next_state in generate_next_states(np.array(current_state)):

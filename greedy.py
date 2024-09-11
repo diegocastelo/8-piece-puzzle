@@ -3,6 +3,7 @@ import numpy as np
 from helpers import generate_next_states, verify_correct_pieces
 import pandas as pd
 
+
 class Greedy:
     def __init__(self, initial_state, final_state):
         self.initial_state = initial_state
@@ -17,10 +18,15 @@ class Greedy:
         visited = set()
         visited.add(initial_state_tuple)
         last_visited = None
+        queue_length = len(queue[0][1])
+
         while queue:
+            if queue_length < len(queue[0][1]):
+                queue_length = len(queue[0][1])
 
             current_state, path = queue.popleft()
             if current_state == final_state_tuple:
+                print(f'Tamanho máximo da lista: {queue_length}')
                 return path
 
             current_state_np = np.array(current_state)

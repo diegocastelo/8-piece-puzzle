@@ -16,9 +16,13 @@ class BFS:
 
         visited = set()
         visited.add(initial_state_tuple)
+        queue_length = len(queue)
         while queue:
+            if queue_length < len(queue):
+                queue_length = len(queue)
             current_state, path = queue.popleft()
             if current_state == final_state_tuple:
+                print(f'Tamanho máximo da lista: {queue_length}')
                 return path
             current_state_np = np.array(current_state)
             next_states = generate_next_states(current_state_np)

@@ -14,7 +14,11 @@ class DFS:
 
         visited = set()
         visited.add(initial_state_tuple)
+        stack_length = len(stack)
         while stack:
+            if stack_length < len(stack):
+                stack_length = len(stack)
+                print(stack_length)
             current_state, path = stack.pop()
             if current_state == final_state_tuple:
                 return path

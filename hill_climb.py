@@ -28,9 +28,12 @@ class HillClimb:
 
         current_state = initial_state_tuple
         path = []
-
+        path_size = len(path)
         while True:
+            if path_size < len(path):
+                path_size = len(path)
             path.append(current_state)
+
 
             # Geração dos próximos estados
             current_state_np = np.array(current_state)
@@ -54,6 +57,7 @@ class HillClimb:
 
             if not best_states:
                 # Se não houver estados melhores, retornar o caminho atual
+                print(f'Tamanho máximo da lista: {path}')
                 return path
 
             # Converter best_states para um array unidimensional
@@ -62,9 +66,11 @@ class HillClimb:
             # Escolher um estado aleatoriamente entre os melhores
             next_state = best_states_array[np.random.choice(best_states_array.shape[0])]
             next_state = tuple(map(tuple, next_state))
+
             if next_state == final_state_tuple:
                 # Se o próximo estado for o estado final, retornar o caminho final
                 path.append(next_state)
+                print(f'Tamanho máximo da lista: {path_size}')
                 return path
 
             # Mover para o próximo estado
